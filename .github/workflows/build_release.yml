@@ -28,4 +28,4 @@ jobs:
         with:
           name: dist-without-markdown
           path: |
-            .pio
+            .pio/build/STM32F103RC_creality/firmware.elf
