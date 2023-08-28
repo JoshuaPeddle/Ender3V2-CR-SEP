@@ -120,7 +120,7 @@
 //#define BLUETOOTH
 
 // Name displayed in the LCD "Ready" message and Info menu
-#define CUSTOM_MACHINE_NAME "MRiscoC-Printer"
+#define CUSTOM_MACHINE_NAME "Ender3V2-422-BLT"
 
 // Printer's unique ID, used by some programs to differentiate between machines.
 // Choose your own or use a service like https://www.uuidgenerator.net/version4
@@ -663,8 +663,8 @@
  * PIDTEMP : PID temperature control (~4.1K)
  * MPCTEMP : Predictive Model temperature control. (~1.8K without auto-tune)
  */
-//#define PIDTEMP           // See the PID Tuning Guide at https://reprap.org/wiki/PID_Tuning
-#define MPCTEMP         // ** EXPERIMENTAL ** See https://marlinfw.org/docs/features/model_predictive_control.html
+#define PIDTEMP           // See the PID Tuning Guide at https://reprap.org/wiki/PID_Tuning
+//#define MPCTEMP         // ** EXPERIMENTAL ** See https://marlinfw.org/docs/features/model_predictive_control.html
 
 #define PID_MAX  255      // Limit hotend current while PID is active (see PID_FUNCTIONAL_RANGE below); 255=full current
 #define PID_K1 0.95       // Smoothing factor within any PID loop
@@ -699,8 +699,8 @@
  */
 #if ENABLED(MPCTEMP)
   #define MPC_AUTOTUNE                                // Include a method to do MPC auto-tuning (~6.3K bytes of flash)
-  #define MPC_EDIT_MENU                             // Add MPC editing to the "Advanced Settings" menu. (~1.3K bytes of flash)
-  #define MPC_AUTOTUNE_MENU                         // Add MPC auto-tuning to the "Advanced Settings" menu. (~350 bytes of flash)
+  //#define MPC_EDIT_MENU                             // Add MPC editing to the "Advanced Settings" menu. (~1.3K bytes of flash)
+  //#define MPC_AUTOTUNE_MENU                         // Add MPC auto-tuning to the "Advanced Settings" menu. (~350 bytes of flash)
 
   #define MPC_MAX 255                                 // (0..255) Current to nozzle while MPC is active.
   #define MPC_HEATER_POWER { 40.0f }                  // (W) Heat cartridge powers.
@@ -708,11 +708,11 @@
   #define MPC_INCLUDE_FAN                             // Model the fan speed?
 
   // Measured physical constants from M306
-  #define MPC_BLOCK_HEAT_CAPACITY { 14.40 }           // (J/K) Heat block heat capacities.
-  #define MPC_SENSOR_RESPONSIVENESS { 0.2187 }         // (K/s per ∆K) Rate of change of sensor temperature from heat block.
-  #define MPC_AMBIENT_XFER_COEFF { 0.1257 }           // (W/K) Heat transfer coefficients from heat block to room air with fan off.
+  #define MPC_BLOCK_HEAT_CAPACITY { 16.7f }           // (J/K) Heat block heat capacities.
+  #define MPC_SENSOR_RESPONSIVENESS { 0.22f }         // (K/s per ∆K) Rate of change of sensor temperature from heat block.
+  #define MPC_AMBIENT_XFER_COEFF { 0.068f }           // (W/K) Heat transfer coefficients from heat block to room air with fan off.
   #if ENABLED(MPC_INCLUDE_FAN)
-    #define MPC_AMBIENT_XFER_COEFF_FAN255 { 0.1315 }  // (W/K) Heat transfer coefficients from heat block to room air with fan on full.
+    #define MPC_AMBIENT_XFER_COEFF_FAN255 { 0.097f }  // (W/K) Heat transfer coefficients from heat block to room air with fan on full.
   #endif
 
   // For one fan and multiple hotends MPC needs to know how to apply the fan cooling effect.
@@ -1916,7 +1916,7 @@
     // Enable this option to use an encoder disc that toggles the runout pin
     // as the filament moves. (Be sure to set FILAMENT_RUNOUT_DISTANCE_MM
     // large enough to avoid false positives.)
-    //#define FILAMENT_MOTION_SENSOR
+    #define FILAMENT_MOTION_SENSOR  // MRiscoC Enabled runout sensor support
 
     #if ENABLED(FILAMENT_MOTION_SENSOR)
       //#define FILAMENT_SWITCH_AND_MOTION
@@ -2001,8 +2001,8 @@
  */
 //#define AUTO_BED_LEVELING_3POINT
 //#define AUTO_BED_LEVELING_LINEAR
-//#define AUTO_BED_LEVELING_BILINEAR  // MRiscoC BLTouch auto level  // Disabled for UBL
-#define AUTO_BED_LEVELING_UBL  // MRiscoC UBL
+#define AUTO_BED_LEVELING_BILINEAR  // MRiscoC BLTouch auto level
+//#define AUTO_BED_LEVELING_UBL
 //#define MESH_BED_LEVELING
 
 /**
@@ -3384,9 +3384,6 @@
 #if PROUI_EX
   #define HAS_GCODE_PREVIEW 1
   #define HAS_TOOLBAR 1
-  #if ENABLED(FILAMENT_RUNOUT_SENSOR)
-    #define HAS_PROUI_RUNOUT_SENSOR 1
-  #endif
 #endif
 #define HAS_CUSTOM_COLORS 1
 #define HAS_PLOT 1
@@ -3396,15 +3393,15 @@
 //#define HAS_SD_EXTENDER 1  // Enable to support SD card extender cables
 #define MESH_EDIT_MENU
 #define SHOW_REAL_POS
-#define ACTIVATE_MESH_ITEM  // Allows temporary enabling of mesh leveling
+//#define ACTIVATE_MESH_ITEM  // Allows temporary enabling of mesh leveling
 #define RUNOUT_TUNE_ITEM
 #define PLR_TUNE_ITEM
 //#define JD_TUNE_ITEM  // Enable only if Juntion Deviation is enabled
 //#define ADVK_TUNE_ITEM  // Enable only if Linear Advance is enabled
-#define MEDIASORT_MENU_ITEM  // Allows enable/disable file list sorting
+//#define MEDIASORT_MENU_ITEM  // Allows enable/disable file list sorting
 //#define CCLOUD_PRINT_SUPPORT  // Allows enable/disable Creality Cloud Print Support
 #define ZHOME_BEFORE_LEVELING
-#define SMOOTH_ENCODER_MENUITEMS  // Menu items value faster/smooth change rate
+//#define SMOOTH_ENCODER_MENUITEMS  // Menu items value faster/smooth change rate
 #define SHOW_SPEED_IND // Show the axes speed in mm/s intermittently with the speed percentage
 //#define NO_BLINK_IND  // Disables dashboard icon background blink indicator
 
